@@ -1,0 +1,17 @@
+publisher:
+  name: WhoTeach
+  description: |
+      Il progetto WhoTeach mira a creare una piattaforma cloud sulle repository 
+      di apprendimento attuali (MOOC, open source o sottoposti a pagamento), 
+      che estrapola e integra i loro contenuti in base alle esigenze dell’utente,
+      a specifici criteri di qualità e alle politiche di condivisione e autorizzazione. 
+      La piattaforma è concepita per utenti esigenti, ossia per persone che sono solite 
+      imparare ed, eventualmente, insegnare, che cercano contenuti didattici validati 
+      e ben organizzati per la propria crescita culturale o per l’insegnamento.
+  github_organization_url: https://github.com/ricardoanibalmatamorosaragon/WhoTeach
+  short_name: Min. Doc. Pub.
+  website: https://www.whoteach.eu/lms/
+  tags:
+    - documents
+    - public
+  logo: assets/images/logo.svg
