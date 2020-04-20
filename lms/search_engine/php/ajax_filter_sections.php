@@ -79,13 +79,13 @@ $nome_array = substr($nome_array, 0, -1);
 $nome_array = str_replace("l'", "l\\'", $nome_array);	
 
 //x.id = z.Id_course_sections and
-//VERSIONE VECCHIA ---> $stringa_where=$stringa_where."and (exists (select * from sql973959_3.mdl_metadata z where  (z.Property='".$nome_array_key."' and z.Value IN (".$nome_array.")))) ";
+//VERSIONE VECCHIA ---> $stringa_where=$stringa_where."and (exists (select * from mdl_metadata z where  (z.Property='".$nome_array_key."' and z.Value IN (".$nome_array.")))) ";
 $stringa_where=$stringa_where."AND x.id IN (SELECT m.Id_course_sections FROM mdl_metadata m WHERE  m.Property='".$nome_array_key."' and m.Value IN (".$nome_array."))";
 
 
 //while(list($chiave,$valore)=each($nome_array_value))
 //		{
-//		$stringa_where=$stringa_where."('".$valore."' in (SELECT sql973959_3.mdl_metadata.Value from sql973959_3.mdl_metadata  where x.id= sql973959_3.mdl_metadata.Id_course_sections and sql973959_3.mdl_metadata.Property='".$nome_array_key."')) or ";
+//		$stringa_where=$stringa_where."('".$valore."' in (SELECT mdl_metadata.Value from mdl_metadata  where x.id= mdl_metadata.Id_course_sections and mdl_metadata.Property='".$nome_array_key."')) or ";
 	//	}
 		
 	//	$stringa_where=substr($stringa_where, 0, strlen($stringa_where)-4);
@@ -94,12 +94,12 @@ $stringa_where=$stringa_where."AND x.id IN (SELECT m.Id_course_sections FROM mdl
 
 
 if ($stringa_where=='') 
-		{$sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname FROM sql973959_3.mdl_course y,sql973959_3.mdl_course_sections x where x.course = y.id and x.name is not null AND x.id > 2 AND sequence <> ''";
+		{$sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname FROM mdl_course y,mdl_course_sections x where x.course = y.id and x.name is not null AND x.id > 2 AND sequence <> ''";
 	}
 	else {
-//VERSIONE VECCHIA ---> $sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname FROM sql973959_3.mdl_course y,sql973959_3.mdl_course_sections x,sql973959_3.mdl_metadata where x.course = y.id and x.name is not null ".$stringa_where."))) AND x.visible = 1 AND x.id > 2 AND sequence <> ''";
+//VERSIONE VECCHIA ---> $sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname FROM mdl_course y,mdl_course_sections x,mdl_metadata where x.course = y.id and x.name is not null ".$stringa_where."))) AND x.visible = 1 AND x.id > 2 AND sequence <> ''";
 		$sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname 
-						FROM sql973959_3.mdl_course y,sql973959_3.mdl_course_sections x,sql973959_3.mdl_metadata z
+						FROM mdl_course y,mdl_course_sections x,mdl_metadata z
 						where x.course = y.id 
 						and x.id = z.Id_course_sections
 						and x.name is not null 
@@ -169,8 +169,9 @@ while ($row = mysqli_fetch_row($result)){
 				$name = "background-color: #000000; color: #ffffff";
 			}
 			
-			
-			echo "<option style=\"" . $name . "\" value=\"$val3\" title='Module Description = $val2 \n Course Title = $val4'>". $val1. "</option>";
+			if (!ctype_space($val1) && $val1!=null && $val1!='')
+				echo "<option style=\"" .str_replace('\'', '&#39;',$name). "\" value=\"".str_replace('\'', '&#39;',$val3)."\" title='Module Description = ".str_replace('\'', '&#39;',$val2)." \nCourse Title = ".str_replace('\'', '&#39;',$val4)."'>".str_replace('\'', '&#39;',$val1)."</option>";
+
 $i=$i+1;
 }
 				

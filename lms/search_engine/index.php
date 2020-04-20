@@ -201,12 +201,12 @@ for (var i=1;i<=10;i++)
 			echo '<br/><div align="center"><h1>'.translate_engine("Add modules through metadata").'</h1></div><br/>';
 
 			$i=0;
-			$result = mysqli_query(GetMyConnection(), "SELECT Property,Value FROM Sql973959_3.mdl_metadata where Id_course=".$course);
+			$result = mysqli_query(GetMyConnection(), "SELECT Property,Value FROM mdl_metadata where Id_course=".$course);
 			$stringa_where='';
 			/*
 			while ($row = mysql_fetch_row($result)){
 				//echo $row[0] . " ". $row[1] . "<br />";
-				$stringa_where=$stringa_where."AND (exists (select * from Sql973959_3.mdl_metadata z where mdl_course_sections.id = z.Id_course_sections and (z.Property='".$row[0]."' and z.Value IN ".$row[1]."))) ";
+				$stringa_where=$stringa_where."AND (exists (select * from mdl_metadata z where mdl_course_sections.id = z.Id_course_sections and (z.Property='".$row[0]."' and z.Value IN ".$row[1]."))) ";
 				//echo $row[1];
 				if (!$array_metadati[$row[0]])
 						{
@@ -259,7 +259,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 					<p><strong>1.</strong><?php echo translate_engine('Language');?></p>
 						<select multiple="multiple" id="select1" name="language[]"  style="width:250px">
 						<?php
-						$result = mysqli_query( GetMyConnection(), "SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='language'" );
+						$result = mysqli_query( GetMyConnection(), "SELECT property_value FROM mdl_metadata_descr where property_name='language'" );
 						while ($row = mysqli_fetch_row($result)){
 						if (in_array($row[0], $array_metadati['language'])) {
 						echo '<option value="'.$row[0].'" selected="selected">'.translate_language($row[0]).'</option>';
@@ -278,7 +278,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 						<p><strong>2.</strong><?php echo translate_engine('Category');?></p>
 						<select multiple="multiple" id="select2" name="category[]" style="width:250px" >
 							<?php
-							$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='category'" );
+							$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM mdl_metadata_descr where property_name='category'" );
 							$lista_category="";
 							while ($row = mysqli_fetch_row($result)){
 							if (in_array($row[0], $array_metadati['category'])) {
@@ -301,7 +301,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 						<select multiple="multiple" id="select3" name="d_req_skill[]" style="width:250px">
 						<?php 
 							$lista_category=substr($lista_category, 0, strlen($lista_category)-1);
-							$stringa_query="SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='d_req_skill' and category in (".$lista_category.")";
+							$stringa_query="SELECT property_value FROM mdl_metadata_descr where property_name='d_req_skill' and category in (".$lista_category.")";
 
 							$result = mysqli_query( GetMyConnection(), $stringa_query );
 							while ($row = mysqli_fetch_row($result)){
@@ -322,7 +322,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 						<p><strong>4.</strong><?php echo translate_engine('Acquired skills');?> </p>
 						<select multiple="multiple" id="select4" name="d_acq_skill[]" style="width:250px">
 						<?php
-							$stringa_query="SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='d_acq_skill' and category in (".$lista_category.")";
+							$stringa_query="SELECT property_value FROM mdl_metadata_descr where property_name='d_acq_skill' and category in (".$lista_category.")";
 								
 							$result = mysqli_query(GetMyConnection(), $stringa_query );
 							
@@ -358,7 +358,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 						<p><strong>5.</strong><?php echo translate_engine('Learning Resource Type');?></p>
 					<select  multiple="multiple" id="select5"  name="resourcetype[]"  style="width:250px">
 						<?php
-						$result = mysqli_query(GetMyConnection() , "SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='resourcetype'");
+						$result = mysqli_query(GetMyConnection() , "SELECT property_value FROM mdl_metadata_descr where property_name='resourcetype'");
 						while ($row = mysqli_fetch_row($result)){
 						if (in_array($row[0], $array_metadati['resourcetype'])) {
 						echo '<option value="'.$row[0].'" selected="selected">'.$row[0].'</option>';
@@ -376,7 +376,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 						<p><strong>6.</strong><?php echo translate_engine('Difficulty');?></p>
 						<select multiple="multiple" id="select6" name="difficulty[]" style="width:250px">
 							<?php
-							$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='difficulty'");
+							$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM mdl_metadata_descr where property_name='difficulty'");
 							while ($row = mysqli_fetch_row($result)){
 							if (in_array($row[0], $array_metadati['difficulty'])) {
 							echo '<option value="'.$row[0].'" selected="selected">'.$row[0].'</option>';
@@ -395,7 +395,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 						<p><strong>7.</strong><?php echo translate_engine('Format');?></p>
 						<select multiple="multiple" id="select9" name="format[]" style="width:250px">
 							<?php
-							$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='format'" );
+							$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM mdl_metadata_descr where property_name='format'" );
 							while ($row = mysqli_fetch_row($result)){
 							if (in_array($row[0], $array_metadati['format'])) {
 							echo '<option value="'.$row[0].'" selected="selected">'.$row[0].'</option>';
@@ -418,7 +418,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 							<select multiple="multiple" id="select7" name="min_age[]" style="width:250px">
 								<?php
 								/*
-								$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='min_age'");
+								$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM mdl_metadata_descr where property_name='min_age'");
 								while ($row = mysqli_fetch_row($result)){
 								if (in_array($row[0], $array_metadati['min_age'])) {
 								echo '<option value="'.$row[0].'" selected="selected">'.$row[0].'</option>';
@@ -440,7 +440,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 							<select multiple="multiple" id="select8" name="max_age[]" style="width:250px">
 								<?php
 								/*
-								$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='max_age'" );
+								$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM mdl_metadata_descr where property_name='max_age'" );
 								while ($row = mysqli_fetch_row($result)){
 								if (in_array($row[0], $array_metadati['max_age'])) {
 								echo '<option value="'.$row[0].'" selected="selected">'.$row[0].'</option>';
@@ -480,7 +480,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 						<p><strong>8.</strong><?php echo translate_engine('Typical Learning Time');?></p>
 						<select multiple="multiple" id="select10" name="time[]" style="width:250px">
 							<?php
-							$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM Sql973959_3.mdl_metadata_descr where property_name='time'" );
+							$result = mysqli_query(GetMyConnection(), "SELECT property_value FROM mdl_metadata_descr where property_name='time'" );
 							while ($row = mysqli_fetch_row($result)){
 							if (in_array($row[0], $array_metadati['time'])) {
 							echo '<option value="'.$row[0].'" selected="selected">'.$row[0].'</option>';
@@ -497,7 +497,7 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 					<label>
 						<p><strong>9.</strong><?php echo translate_engine('Keywords (separator ", ")');?></p>
 						<input id="key" type="text" class="text" name="keywords" size=44" onchange="keyword_ajax()" value="<?php
-							$result = mysqli_query(GetMyConnection(), "SELECT Value FROM Sql973959_3.mdl_metadata where Property='keywords' and Id_course=".$course );
+							$result = mysqli_query(GetMyConnection(), "SELECT Value FROM mdl_metadata where Property='keywords' and Id_course=".$course );
 							$key_value='';
 							while ($row = mysqli_fetch_row($result)){
 							$key_value=$row[0];
@@ -539,10 +539,10 @@ print '<form id="filterform" action="https://'.$server_name.'/lms/backup/import_
 
 			$stringa_where=substr($stringa_where, 0, strlen($stringa_where)-4);	
 			if ($stringa_where=='') 
-				{$sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname FROM Sql973959_3.mdl_course y,Sql973959_3.mdl_course_sections x where x.course = y.id and x.name is not null AND x.visible = 1 AND x.id > 2 AND sequence <> ''";
+				{$sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname FROM mdl_course y,mdl_course_sections x where x.course = y.id and x.name is not null AND x.visible = 1 AND x.id > 2 AND sequence <> ''";
 				}
 				else {
-					$sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname FROM Sql973959_3.mdl_course y,Sql973959_3.mdl_course_sections x,Sql973959_3.mdl_metadata where x.course = y.id and x.name is not null  ".$stringa_where."))) AND x.visible = 1 AND x.id > 2 AND sequence <> ''";
+					$sql_sections="SELECT distinct x.section,x.name,x.summary, x.id, y.fullname FROM mdl_course y,mdl_course_sections x,mdl_metadata where x.course = y.id and x.name is not null  ".$stringa_where."))) AND x.visible = 1 AND x.id > 2 AND sequence <> ''";
 				}
 			
 			$sql_sections=$sql_sections." and x.id  not in (select id_sec_dest from sssecm_duplicates WHERE flag = 0) AND x.id  not in (SELECT id FROM mdl_course_sections WHERE course = '".$course."') ";
@@ -559,6 +559,7 @@ echo $sql_sections;
 			$val2= strip_tags($row[2]);
 			$val3= strip_tags($row[3]);
 			$val4= strip_tags($row[4]);
+			echo ($val1);
 			
 			//colorazione del nome
 			$sql = "SELECT mdl_metadata.Value
@@ -586,8 +587,9 @@ echo $sql_sections;
 			elseif ($color == "black") {
 				$name = "background-color: #000000; color: #ffffff";
 			}
-			
-			echo "<option style=\"" . $name . "\" value=\"$val3\" title='Module Description = $val2 \nCourse Title = $val4'>". $val1. "</option>";
+			//fatto escape del single quote '
+			if (!ctype_space($val1) && $val1!=null && $val1!='')
+				echo "<option style=\"" .str_replace('\'', '&#39;',$name). "\" value=\"".str_replace('\'', '&#39;',$val3)."\" title='Module Description = ".str_replace('\'', '&#39;',$val2)." \nCourse Title = ".str_replace('\'', '&#39;',$val4)."'>".str_replace('\'', '&#39;',$val1)."</option>";
 			$i=$i+1;
 			}
 
