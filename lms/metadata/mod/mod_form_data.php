@@ -27,7 +27,8 @@
 	$mform->addElement('header','Metadata', convert_metadata('metadata'));
 
 	$missing = array(
-    		"missing1" => convert_metadata("missLang"),
+		"missing0" => convert_metadata("missKeyword"),
+    	"missing1" => convert_metadata("missLang"),
 		"missing2" => convert_metadata("missFormat"),
 		"missing3" => convert_metadata("missLRT"),
 		"missing4" => convert_metadata("missTLT")
@@ -47,8 +48,9 @@
 
 	//Keywords
 	$mform->addElement('text','Keywords', convert_metadata('ks'),'id="text-area" class="text_area" maxlength="254" size="50"');
+	$mform->addRule('Keywords', $missing['missing0'], 'required', null, 'client');
 	$mform->setType('Keywords', PARAM_NOTAGS); 
-
+	
 	//Format
 	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'format'";
 	$fields = $DB->get_records_sql($sql);
