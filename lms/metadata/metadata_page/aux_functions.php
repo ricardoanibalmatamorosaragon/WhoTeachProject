@@ -340,52 +340,52 @@ function translate_format($format)
 
 function translate_type($type)
 {
-   switch ($type) {
-   	case 'Exercise':
+   switch (strtolower($type)) {
+   	case 'exercise':
    		$type = handle_translation('Exercise', 'Esercizio', 'Alıştırma', 'Упражнение');
    		break;
-   	case 'Simulation':
+   	case 'simulation':
    		$type = handle_translation('Simulation', 'Simulazione', 'Simulasyon', 'Симулация');
    		break;
-   	case 'Questionnaire':
+   	case 'questionnaire':
    		$type = handle_translation('Questionnaire', 'Questionario', 'Въпросник', 'Questionnaire');
    		break;
-   	case 'Diagram':
+   	case 'diagram':
    		$type = handle_translation('Diagram', 'Diagramma', 'Diyagram', 'Диаграма');
    		break;
-   	case 'Figure':
+   	case 'figure':
    		$type = handle_translation('Figure', 'Figura', 'Şekil', 'Фигура');
    		break;
-   	case 'Graph':
+   	case 'graph':
    		$type = handle_translation('Graph', 'Grafico', 'Grafik', 'Графика');
    		break;
-   	case 'Index':
+   	case 'index':
    		$type = handle_translation('Index', 'Indice', 'İndeks', 'индекс');
    		break;
-   	case 'Slides':
+   	case 'slides':
    		$type = handle_translation('Slides', 'Diapositive', 'Slayt', 'Слайд');
    		break;
-   	case 'Table':
+   	case 'table':
    		$type = handle_translation('Table', 'Tabella', 'Tablo', 'Таблица');
    		break;
-   	case 'Narrative text':
+   	case 'narrative text':
    		$type = handle_translation('Narrative text', 'Testo Narrativo', 'Düz metin', 'Oписание (Текст)');
    		break;
-   	case 'Exam':
+   	case 'exam':
    		$type = handle_translation('Exam', 'Esame', 'Sınav', 'Изпит');
    		break;
-   	case 'Experiment':
+   	case 'experiment':
    		$type = handle_translation('Experiment', 'Esperimento', 'Deney', 'Експеримент');
    		break;
-   	case 'Problem statement':
+   	case 'problem statement':
    		$type = handle_translation('Problem statement', 'Definizione problema', 'Problem ifadesi', 'Описание на проблем');
    		break;
-   	case 'Self assessment':
+   	case 'self assessment':
    		$type = handle_translation('Self assessment', 'Autovalutazione', 'Özdeğerlendirme', 'Самооценка');
    		break;
-   	case 'Lecture':
+   	case 'lecture':
    		$type = handle_translation('Lecture', 'Lettura', 'Anlatım', 'Лекция');
-   		break;
+   		break;	
     }					
     return $type;
 }
@@ -399,7 +399,7 @@ function translate_time($time)
 	case 'minutes60':
 		$time = handle_translation('60 minutes', '60 minuti', '60 dakika', '60 минути');
 		break;	
-	case '90 minutes90':
+	case 'minutes90':
 		$time = handle_translation('90 minutes', '90 minuti', '90 dakika', '90 минути');
 		break;
 	case 'minutes120p':
