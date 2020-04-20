@@ -39,7 +39,7 @@
 
 	//Language
 	$index0 = $data->Language;
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'language'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'language'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -48,7 +48,7 @@
 		$i++;
 	}
 
-    $sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, id_course_sections, id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section, $id_resource, 'language', '".$choices[$index0]."', $courseGrade)";
+    $sql="INSERT INTO mdl_metadata(id_course, id_course_sections, id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section, $id_resource, 'language', '".$choices[$index0]."', $courseGrade)";
     $DB->execute($sql);
 
 
@@ -64,7 +64,7 @@
                        			$lower = strtolower($pieces2[$j]);
                        			$white_space = trim($lower);
                        			if(!strlen(trim($white_space)) ==0 ) {
-                       			$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, id_course_sections,id_resource, property, value, courseGrade, lang) VALUES ($parent_course, $parent_section,$id_resource, 'keywords', \"".$white_space."\", $courseGrade, '".$lang."')";
+                       			$sql="INSERT INTO mdl_metadata(id_course, id_course_sections,id_resource, property, value, courseGrade, lang) VALUES ($parent_course, $parent_section,$id_resource, 'keywords', \"".$white_space."\", $courseGrade, '".$lang."')";
                        			$DB->execute($sql);
                        			}
                     		}
@@ -73,7 +73,7 @@
                     		$lower = strtolower($temp);
                     		$white_space = trim($lower);
                     		if(!strlen(trim($white_space)) ==0 ) {
-                    			$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, id_course_sections,id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section,$id_resource, 'keywords', \"".$white_space."\", $courseGrade)";
+                    			$sql="INSERT INTO mdl_metadata(id_course, id_course_sections,id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section,$id_resource, 'keywords', \"".$white_space."\", $courseGrade)";
                     		$DB->execute($sql);
                     		}
             		}
@@ -82,7 +82,7 @@
 
 	//Format
 	$index2 = $data->Format;
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'format'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'format'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -91,13 +91,13 @@
 		$i++;
 	}
 
-    $sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, id_course_sections, id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section, $id_resource, 'format', '".$choices[$index2]."', $courseGrade)";
+    $sql="INSERT INTO mdl_metadata(id_course, id_course_sections, id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section, $id_resource, 'format', '".$choices[$index2]."', $courseGrade)";
     $DB->execute($sql);
 
 
 	//LearningResourceType
 	$index3 = $data->LearningResourceType;
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'resourcetype'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'resourcetype'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -106,13 +106,13 @@
 		$i++;
 	}
 
-    $sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, id_course_sections, id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section, $id_resource, 'resourcetype', '".$choices[$index3]."', $courseGrade)";
+    $sql="INSERT INTO mdl_metadata(id_course, id_course_sections, id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section, $id_resource, 'resourcetype', '".$choices[$index3]."', $courseGrade)";
     $DB->execute($sql);
 
 
 	//TypicalLearningTime
 	$index4 = $data->TypicalLearningTime;
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'time'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'time'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -121,7 +121,7 @@
 		$i++;
 	}
 
-    $sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, id_course_sections, id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section, $id_resource, 'time', '".$choices[$index4]."', $courseGrade)";
+    $sql="INSERT INTO mdl_metadata(id_course, id_course_sections, id_resource, property, value, courseGrade) VALUES ($parent_course, $parent_section, $id_resource, 'time', '".$choices[$index4]."', $courseGrade)";
     $DB->execute($sql);
 
 	

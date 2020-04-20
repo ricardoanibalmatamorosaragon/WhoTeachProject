@@ -9,7 +9,7 @@
 	
 	//recupero dell'id della categoria padre
 	$id_category = $course->category;
-	$sql = "SELECT name FROM Sql973959_3.mdl_course_categories WHERE  id = '".$id_category."'";
+	$sql = "SELECT name FROM mdl_course_categories WHERE  id = '".$id_category."'";
 	$fields = $DB->get_records_sql($sql);
 	foreach($fields as $field) {
 			$cat = $field->name;
@@ -28,7 +28,7 @@
 	if($index0 != NULL) {
 		$pieces = explode(", ", $index0);
 		for($i = 0; $i < count($pieces); $i++) {
-			$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value) VALUES ($id, 'keywords', '".$pieces[$i]."')";
+			$sql="INSERT INTO mdl_metadata(id_course, property, value) VALUES ($id, 'keywords', '".$pieces[$i]."')";
 			$DB->execute($sql);
 		}
 	}
@@ -45,7 +45,7 @@
                        			$lower = strtolower($pieces2[$j]);
                        			$white_space = trim($lower);
                        			if(!strlen(trim($white_space)) ==0 ) {
-                       				$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value, courseGrade, lang) VALUES ($id, 'keywords', \"".$white_space."\", $courseGrade, '".$lang."')";
+                       				$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade, lang) VALUES ($id, 'keywords', \"".$white_space."\", $courseGrade, '".$lang."')";
                        			$DB->execute($sql);
                        			}
                     		}
@@ -54,7 +54,7 @@
                     		$lower = strtolower($temp);
                     		$white_space = trim($lower);
                     		if(!strlen(trim($white_space)) ==0 ) {
-                    			$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'keywords', \"".$white_space."\", $courseGrade)";
+                    			$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'keywords', \"".$white_space."\", $courseGrade)";
                     		$DB->execute($sql);
                     		}
             		}
@@ -63,7 +63,7 @@
 
 	//Minimal Age
 	$index1 = $data->MinimalAge;
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'min_age'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'min_age'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -72,12 +72,12 @@
 		$i++;
 	}
 	
-	$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'min_age', '".$choices[$index1]."', $courseGrade)";
+	$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'min_age', '".$choices[$index1]."', $courseGrade)";
 	$DB->execute($sql);
 
 	//Maximal Age
 	$index2 = $data->MaximalAge;
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'max_age'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'max_age'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -86,18 +86,18 @@
 		$i++;
 	}
 	
-	$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'max_age', '".$choices[$index2]."', $courseGrade)";
+	$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'max_age', '".$choices[$index2]."', $courseGrade)";
 	$DB->execute($sql);
 	
 	
 	//Age (da fare con singolo metadato... in seguito)
-	//$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'age', '".$choices[$index1]."-".$choices[$index2]."', $courseGrade)";
+	//$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'age', '".$choices[$index1]."-".$choices[$index2]."', $courseGrade)";
 	//$DB->execute($sql);
 	
 
 	//Category
 	$index3 = $data->Category;
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_value = \"".$cat."\"";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_value = \"".$cat."\"";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -107,14 +107,14 @@
 	}
 	for($i = 0; $i < count($index3); $i++) {
 		$value = $index3[$i];
-		$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'category', \"".$choices[$value]."\", $courseGrade)";
+		$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'category', \"".$choices[$value]."\", $courseGrade)";
 		$DB->execute($sql);
 	}
 
 	//Specified Required/Acquired Skills
 
 	//preleva le skills associate alla categoria
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 's_req_skill' AND category = \"".$cat."\"";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 's_req_skill' AND category = \"".$cat."\"";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -137,7 +137,7 @@
 			$current_scale = $data->$scale;
 			$current_scale++;
 
-			$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value, grade, courseGrade) VALUES ($id, 's_req_skill', \"".$choices[$j]."\", '".$current_scale."', $courseGrade)";
+			$sql="INSERT INTO mdl_metadata(id_course, property, value, grade, courseGrade) VALUES ($id, 's_req_skill', \"".$choices[$j]."\", '".$current_scale."', $courseGrade)";
 			$DB->execute($sql);
 		}
 	}
@@ -154,7 +154,7 @@
 			$current_scale = $data->$scale;
 			$current_scale++;
 
-			$sql="INSERT INTO Sql973959_3.mdl_metadata(id_course, property, value, grade, courseGrade) VALUES ($id, 's_acq_skill', \"".$choices[$j]."\", '".$current_scale."', $courseGrade)";
+			$sql="INSERT INTO mdl_metadata(id_course, property, value, grade, courseGrade) VALUES ($id, 's_acq_skill', \"".$choices[$j]."\", '".$current_scale."', $courseGrade)";
 			$DB->execute($sql);
 		}
 	}

@@ -6,21 +6,21 @@
 
 	$id_course = $course->id;
 	$id_category = $course->category;
-	$sql = "SELECT name FROM Sql973959_3.mdl_course_categories WHERE  id = '".$id_category."'";
+	$sql = "SELECT name FROM mdl_course_categories WHERE  id = '".$id_category."'";
 	$fields = $DB->get_records_sql($sql);
 	foreach($fields as $field) {
 			$cat = $field->name;
 	}
 
 	//ViewPreviouslyInsertedMetadata
-	$sql="SELECT count(*) FROM Sql973959_3.mdl_metadata WHERE id_course_sections = '".$_GET['id']."'";
+	$sql="SELECT count(*) FROM mdl_metadata WHERE id_course_sections = '".$_GET['id']."'";
 	$num_rows = $DB->count_records_sql($sql);
 
 	if($num_rows > 0) {
 		
 		$mform->addElement('header','View Previously Inserted Metadata', 'View Previously Inserted Metadata');
 		
-		$sql="SELECT id_metadata, property, value FROM Sql973959_3.mdl_metadata WHERE id_course IS NOT NULL AND id_course_sections = '".$_GET['id']."' AND id_resource IS NULL AND (property = 'keywords' OR property = 'difficulty' OR property = 'd_req_skill' OR property = 'd_acq_skill')";
+		$sql="SELECT id_metadata, property, value FROM mdl_metadata WHERE id_course IS NOT NULL AND id_course_sections = '".$_GET['id']."' AND id_resource IS NULL AND (property = 'keywords' OR property = 'difficulty' OR property = 'd_req_skill' OR property = 'd_acq_skill')";
 		$fields = $DB->get_records_sql($sql);
 		$choices = array();
 		$i = 0;
@@ -45,7 +45,7 @@
 	$mform->setType('Keywords', PARAM_NOTAGS);  
 
 	//Difficulty
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'difficulty'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'difficulty'";
 	$fields = $DB->get_records_sql($sql);
 
 	$choices = array();
@@ -59,7 +59,7 @@
 	$mform->addRule('Difficulty', $missing['missing'], 'required', null, 'client');
 
 	// Derived Required/Acquired Skills
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 's_req_skill' AND category = '".$cat."'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 's_req_skill' AND category = '".$cat."'";
 	$fields = $DB->get_records_sql($sql);
 
 	$choices = array();

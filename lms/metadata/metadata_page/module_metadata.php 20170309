@@ -4,7 +4,7 @@ require_once('aux_functions.php');
 
 // Determina il fullname del corso
 $sql = "SELECT fullname 
-	FROM Sql973959_3.mdl_course 
+	FROM mdl_course 
 	WHERE id = '".$_GET['id_course']."'";
 		
 $fields = $DB->get_records_sql($sql);
@@ -45,7 +45,7 @@ echo $OUTPUT->header();
 	<?php
 
 	// Determina l'ID della sezione
-	$sql = "SELECT id, name FROM Sql973959_3.mdl_course_sections WHERE course = '".$_GET['id_course']."' AND section = '".$_GET['id_section']."'";
+	$sql = "SELECT id, name FROM mdl_course_sections WHERE course = '".$_GET['id_course']."' AND section = '".$_GET['id_section']."'";
 	$fields = $DB->get_records_sql($sql);
 	foreach($fields as $field) {
 		$section_name = $field->name;
@@ -66,7 +66,7 @@ echo $OUTPUT->header();
 	for($i = 0; $i < count($current_property); $i++) {
 
 		// Stampa i metadati associati al tipo di metadato corrente
-		$sql="SELECT value FROM Sql973959_3.mdl_metadata WHERE property = '".$current_property[$i]."' AND id_course IS NOT NULL AND id_course_sections = '".$id_section."' AND id_resource IS NULL";
+		$sql="SELECT value FROM mdl_metadata WHERE property = '".$current_property[$i]."' AND id_course IS NOT NULL AND id_course_sections = '".$id_section."' AND id_resource IS NULL";
 		$fields = $DB->get_records_sql($sql);
 		if($fields != NULL) {
 			print '<table>';
@@ -92,7 +92,7 @@ echo $OUTPUT->header();
 	}
 	
 	$sql = "SELECT value
-		FROM Sql973959_3.mdl_metadata
+		FROM mdl_metadata
 		WHERE property = 'd_req_skill' AND id_course IS NOT NULL AND id_course_sections = '".$id_section."'";
 		
 	$fields = $DB->get_records_sql($sql);
@@ -121,7 +121,7 @@ echo $OUTPUT->header();
 	}
 	
 	$sql = "SELECT value
-		FROM Sql973959_3.mdl_metadata
+		FROM mdl_metadata
 		WHERE property = 'd_acq_skill' AND id_course IS NOT NULL AND id_course_sections = '".$id_section."' AND id_resource IS NULL";
 		
 	$fields = $DB->get_records_sql($sql);
@@ -143,7 +143,7 @@ echo $OUTPUT->header();
 	for($i = 0; $i < count($current_property2); $i++) {
 
 		// Stampa i metadati associati al tipo di metadato corrente
-		$sql="SELECT value FROM Sql973959_3.mdl_metadata WHERE property = '".$current_property2[$i]."' AND id_course_sections = '".$id_section."'";
+		$sql="SELECT value FROM mdl_metadata WHERE property = '".$current_property2[$i]."' AND id_course_sections = '".$id_section."'";
 		$fields = $DB->get_records_sql($sql);
 		if($fields != NULL) {
 			print '<table>';

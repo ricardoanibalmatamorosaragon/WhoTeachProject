@@ -6,13 +6,13 @@
 	$id = $this->current->coursemodule;
 
 	//ViewPreviouslyInsertedMetadata
-	$sql="SELECT count(*) FROM Sql973959_3.mdl_metadata WHERE id_resource = '".$id."'";
+	$sql="SELECT count(*) FROM mdl_metadata WHERE id_resource = '".$id."'";
 	$num_rows = $DB->count_records_sql($sql);
 
 	if($num_rows > 0) {
 		$mform->addElement('header','View Previously Inserted Metadata', convert_metadata('vpim'));
 
-		$sql="SELECT id_metadata, property, value FROM Sql973959_3.mdl_metadata WHERE id_resource = '".$id."' AND id_resource IS NOT NULL AND id_course IS NOT NULL AND id_course_sections IS NOT NULL";
+		$sql="SELECT id_metadata, property, value FROM mdl_metadata WHERE id_resource = '".$id."' AND id_resource IS NOT NULL AND id_course IS NOT NULL AND id_course_sections IS NOT NULL";
 		$fields = $DB->get_records_sql($sql);
 		$choices = array();
 		$i = 0;
@@ -27,15 +27,14 @@
 	$mform->addElement('header','Metadata', convert_metadata('metadata'));
 
 	$missing = array(
-		"missing0" => convert_metadata("missKeyword"),
-    	"missing1" => convert_metadata("missLang"),
+    		"missing1" => convert_metadata("missLang"),
 		"missing2" => convert_metadata("missFormat"),
 		"missing3" => convert_metadata("missLRT"),
 		"missing4" => convert_metadata("missTLT")
 	);
 
 	//Language
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'language'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'language'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -48,11 +47,10 @@
 
 	//Keywords
 	$mform->addElement('text','Keywords', convert_metadata('ks'),'id="text-area" class="text_area" maxlength="254" size="50"');
-	$mform->addRule('Keywords', $missing['missing0'], 'required', null, 'client');
 	$mform->setType('Keywords', PARAM_NOTAGS); 
-	
+
 	//Format
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'format'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'format'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -64,7 +62,7 @@
 	$mform->addRule('Format', $missing['missing2'], 'required', null, 'client');
 
 	//LearningResourceType
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'resourcetype'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'resourcetype'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -76,7 +74,7 @@
 	$mform->addRule('LearningResourceType', $missing['missing3'], 'required', null, 'client');
 
 	//TypicalLearningTime
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'time'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'time'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;

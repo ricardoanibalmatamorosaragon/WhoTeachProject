@@ -3,7 +3,7 @@ require_once('../../config.php');
 require_once('aux_functions.php');
 
 //DETERMINA IL FULLNAME DEL CORSO
-$sql="SELECT fullname FROM Sql973959_3.mdl_course WHERE id = '".$_GET['id_course']."'";
+$sql="SELECT fullname FROM mdl_course WHERE id = '".$_GET['id_course']."'";
 $fields = $DB->get_records_sql($sql);
 foreach($fields as $field) {
 	$course_name = $field->fullname;
@@ -43,7 +43,7 @@ echo $OUTPUT->header();
 	<?php
 
 	//DETERMINA L'ID DELLA SEZIONE
-	$sql="SELECT id, name FROM Sql973959_3.mdl_course_sections WHERE course = '".$_GET['id_course']."' AND section = '".$_GET['id_section']."'";
+	$sql="SELECT id, name FROM mdl_course_sections WHERE course = '".$_GET['id_course']."' AND section = '".$_GET['id_section']."'";
 	$fields = $DB->get_records_sql($sql);
 	foreach($fields as $field) {
 		$id_section = $field->id; 
@@ -54,13 +54,13 @@ echo $OUTPUT->header();
 	print '<td>';
 
 	//DETERMINA TUTTE LE RISORSE ASSOCIATE ALLA SEZIONE
-	$sql="SELECT DISTINCT id_resource FROM Sql973959_3.mdl_metadata WHERE id_course_sections = '".$id_section."' ORDER BY id_resource ASC";
+	$sql="SELECT DISTINCT id_resource FROM mdl_metadata WHERE id_course_sections = '".$id_section."' ORDER BY id_resource ASC";
 	$fields = $DB->get_records_sql($sql);
 	foreach($fields as $field) {
 		$r_id = $field->id_resource;
 
 		//STAMPA IL LOGO DELLA RISORSA CORRENTE
-		$sql="SELECT module, instance FROM Sql973959_3.mdl_course_modules WHERE id = '".$r_id."'";
+		$sql="SELECT module, instance FROM mdl_course_modules WHERE id = '".$r_id."'";
 		$fields = $DB->get_records_sql($sql);
 
 		foreach($fields as $field) {
@@ -69,7 +69,7 @@ echo $OUTPUT->header();
 			$file_name = find_image($r_type);
 			
 			//DETERMINA IL NOME DELLA RISORSA CORRENTE
-			$sql="SELECT name FROM Sql973959_3.mdl_$file_name WHERE id = '".$instance."'";
+			$sql="SELECT name FROM mdl_$file_name WHERE id = '".$instance."'";
 			$fields = $DB->get_records_sql($sql);
 			foreach($fields as $field) {
 				$r_name = $field->name;
@@ -78,7 +78,7 @@ echo $OUTPUT->header();
 			echo '<img src="images/'.$file_name.'.svg"/>'." ".$r_name.'<br/><br/>';
 
 			//STAMPA I METADATI ASSOCIATI ALLA RISORSA CORRENTE
-			$sql="SELECT id_metadata, property, value FROM Sql973959_3.mdl_metadata WHERE id_resource = '".$r_id."'";
+			$sql="SELECT id_metadata, property, value FROM mdl_metadata WHERE id_resource = '".$r_id."'";
 			$fields = $DB->get_records_sql($sql);
 			print '<table border=1 bordercolor=#dddddd CELLPADDING="0">';
             $a = 0;
@@ -109,7 +109,7 @@ echo $OUTPUT->header();
 	print '</tr>';
         print '</table>';
 
-        /**sql="SELECT id_metadata, property, value FROM Sql973959_3.mdl_metadata WHERE id_resource = '".$r_id."'";
+        /**sql="SELECT id_metadata, property, value FROM mdl_metadata WHERE id_resource = '".$r_id."'";
 			$fields = $DB->get_records_sql($sql);
 			print '<table border=1 bordercolor=#dddddd>';
             $a = 0;

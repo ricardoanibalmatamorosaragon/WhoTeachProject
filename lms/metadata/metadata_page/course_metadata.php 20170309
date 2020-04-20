@@ -4,7 +4,7 @@ require_once('aux_functions.php');
 
 // Determina il fullname del corso
 $sql = "SELECT fullname
- 	FROM Sql973959_3.mdl_course 
+ 	FROM mdl_course 
  	WHERE id = '".$_GET['id_course']."'";
  		
 $fields = $DB->get_records_sql($sql);
@@ -56,7 +56,7 @@ echo $OUTPUT->header();
 
 		// Stampa i metadati associati al tipo di metadato corrente
 		$sql = "SELECT value 
-			FROM Sql973959_3.mdl_metadata 
+			FROM mdl_metadata 
 			WHERE property = '".$current_property[$i]."' AND id_course = '".$_GET['id_course']."' AND id_course IS NOT NULL AND id_course_sections IS NULL AND id_resource IS NULL";
 				
 		$fields = $DB->get_records_sql($sql);
@@ -77,7 +77,7 @@ echo $OUTPUT->header();
 	// $gradesRequested contiene i gradi (levels) delle Required Skills per il corso specificato
 	$gradesRequested = array();
 	$sql = "SELECT grade
-		FROM Sql973959_3.mdl_metadata
+		FROM mdl_metadata
 		WHERE grade IS NOT NULL AND id_course = '".$_GET['id_course']."' AND id_course IS NOT NULL AND id_course_sections IS NULL AND id_resource IS NULL AND property = 's_req_skill'";
 			
 	$fields = $DB->get_recordset_sql($sql);	
@@ -88,7 +88,7 @@ echo $OUTPUT->header();
 	}
 	
 	$sql = "SELECT value
-		FROM Sql973959_3.mdl_metadata
+		FROM mdl_metadata
 		WHERE property = 's_req_skill' AND id_course = '".$_GET['id_course']."' AND id_course IS NOT NULL AND id_course_sections IS NULL AND id_resource IS NULL";
 		
 	$fields = $DB->get_records_sql($sql);
@@ -111,7 +111,7 @@ echo $OUTPUT->header();
 	// $gradesAcquired contiene i gradi (levels) delle Acquired Skills per il corso specificato
 	$gradesAcquired = array();
 	$sql = "SELECT grade
-		FROM Sql973959_3.mdl_metadata
+		FROM mdl_metadata
 		WHERE grade IS NOT NULL AND id_course = '".$_GET['id_course']."' AND id_course IS NOT NULL AND property = 's_acq_skill' AND id_course_sections IS NULL AND id_resource IS NULL";
 			
 	$fields = $DB->get_recordset_sql($sql);	
@@ -122,7 +122,7 @@ echo $OUTPUT->header();
 	}
 	
 	$sql = "SELECT value
-		FROM Sql973959_3.mdl_metadata 
+		FROM mdl_metadata 
 		WHERE property = 's_acq_skill' AND id_course = '".$_GET['id_course']."' AND id_course IS NOT NULL AND id_course_sections IS NULL AND id_resource IS NULL";
 			
 	$fields = $DB->get_records_sql($sql);
@@ -150,7 +150,7 @@ echo $OUTPUT->header();
 
 		//STAMPA I METADATI ASSOCIATI AL TIPO DI METADATO CORRENTE
 		$sql = "SELECT value 
-			FROM Sql973959_3.mdl_metadata 
+			FROM mdl_metadata 
 			WHERE property = '".$current_property2[$i]."' AND id_course = '".$_GET['id_course']."'";
 				
 		$fields = $DB->get_records_sql($sql);

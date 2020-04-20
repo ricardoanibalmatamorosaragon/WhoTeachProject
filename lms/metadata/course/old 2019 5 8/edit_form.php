@@ -10,13 +10,13 @@
 	
 	
 	//ViewPreviouslyInsertedMetadata
-		$sql="SELECT count(*) FROM Sql973959_3.mdl_metadata WHERE Id_course = '".$course_id."'";
+		$sql="SELECT count(*) FROM mdl_metadata WHERE Id_course = '".$course_id."'";
 		$num_rows = $DB->count_records_sql($sql);
 	  
 		if($num_rows > 0) {
 			$mform->addElement('header','View Previously Inserted Metadata', 'View Previously Inserted Metadata');
 
-			$sql="SELECT id_metadata, property, value FROM Sql973959_3.mdl_metadata WHERE id_course = '".$course_id."' AND (property = 'keywords' OR property = 'min_age' OR property = 'max_age' OR property = 'category' OR property = 's_req_skill' OR property = 's_acq_skill')";
+			$sql="SELECT id_metadata, property, value FROM mdl_metadata WHERE id_course = '".$course_id."' AND (property = 'keywords' OR property = 'min_age' OR property = 'max_age' OR property = 'category' OR property = 's_req_skill' OR property = 's_acq_skill')";
 			$fields = $DB->get_records_sql($sql);
 			$choices = array();
 			$i = 0;
@@ -42,7 +42,7 @@
 
 
 	//Minimal Age
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'min_age'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'min_age'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -53,7 +53,7 @@
         $mform->addElement('select', 'MinimalAge', 'Minimal Age', $choices);
 
 	//Maximal Age
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 'max_age'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 'max_age'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -69,7 +69,7 @@
 	$mform->addRule(array('MinimalAge','MaximalAge'), $missing['missing1'],'compare','<');
 
 	//Category
-	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_value = '".$cat."'";
+	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_value = '".$cat."'";
 	$fields = $DB->get_records_sql($sql);
 	$choices = array();
 	$i = 0;
@@ -83,7 +83,7 @@
 
 	
 	//Specified Required/Acquired Skills
- 	$sql="SELECT property_value AS value FROM Sql973959_3.mdl_metadata_descr WHERE property_name = 's_req_skill' AND category = '".$cat."'";
+ 	$sql="SELECT property_value AS value FROM mdl_metadata_descr WHERE property_name = 's_req_skill' AND category = '".$cat."'";
  	$fields = $DB->get_records_sql($sql);
 
  	$choices = array();
