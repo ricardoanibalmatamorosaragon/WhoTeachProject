@@ -72,6 +72,7 @@
 		$i++;
 	}
 	
+	echo($choices[$index1]);
 	$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'min_age', '".$choices[$index1]."', $courseGrade)";
 	$DB->execute($sql);
 
@@ -90,9 +91,9 @@
 	$DB->execute($sql);
 	
 	
-	//Age (da fare con singolo metadato... in seguito)
-	//$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'age', '".$choices[$index1]."-".$choices[$index2]."', $courseGrade)";
-	//$DB->execute($sql);
+	//Age (da fare con singolo metadato... per rs
+	$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'age', '".$choices[$index1]."-".$choices[$index2]."', $courseGrade)";
+	$DB->execute($sql);
 	
 
 	//Category
