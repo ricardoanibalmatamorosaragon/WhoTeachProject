@@ -82,8 +82,8 @@
 		$i++;
 	}
 	
-	$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'min_age', '".$choices[$index1]."', $courseGrade)";
-	$DB->execute($sql);
+	//$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'min_age', '".$choices[$index1]."', $courseGrade)";
+	//$DB->execute($sql);
 	$sql="UPDATE mdl_metadata SET value='".$choices[$index1]."' WHERE property='min_age' AND id_course='".$id."' AND id_course_sections IS NOT NULL";
 	$DB->execute($sql);
 
@@ -98,8 +98,8 @@
 		$i++;
 	}
 	
-	$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'max_age', '".$choices[$index2]."', $courseGrade)";
-	$DB->execute($sql);
+	//$sql="INSERT INTO mdl_metadata(id_course, property, value, courseGrade) VALUES ($id, 'max_age', '".$choices[$index2]."', $courseGrade)";
+	//$DB->execute($sql);
 	$sql="UPDATE mdl_metadata SET value='".$choices[$index2]."' WHERE property='max_age' AND id_course='".$id."' AND id_course_sections IS NOT NULL";
 	$DB->execute($sql);
 	
